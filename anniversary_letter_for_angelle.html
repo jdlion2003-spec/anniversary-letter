@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -18,12 +18,15 @@
             theme: {
                 extend: {
                     colors: {
+                        creamBg: '#FAF5F0',
+                        cardBg: '#FFFDF9',
                         roseGold: '#B87333',
-                        softRose: '#fce4ec',
-                        deepRose: '#880e4f',
-                        burgundy: '#4a0e17',
-                        cream: '#fffdfa',
-                        warmGold: '#d4af37',
+                        softRose: '#f8bbd0',
+                        blushPink: '#fce4ec',
+                        burgundy: '#3D1720',
+                        deepBurgundy: '#2A0E14',
+                        warmGold: '#C08038',
+                        goldAccent: '#d4af37'
                     },
                     fontFamily: {
                         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
@@ -38,8 +41,11 @@
 
     <style>
         body {
-            background-color: #0f0709;
-            color: #f7ebe8;
+            background-color: #FAF5F0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(248, 187, 208, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(192, 128, 56, 0.15) 0%, transparent 40%);
+            color: #2A0E14;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
@@ -58,10 +64,10 @@
 
         .petal {
             position: absolute;
-            background: radial-gradient(circle, rgba(244, 143, 177, 0.7) 0%, rgba(136, 14, 79, 0.3) 70%);
+            background: radial-gradient(circle, rgba(244, 143, 177, 0.6) 0%, rgba(225, 112, 85, 0.3) 80%);
             border-radius: 150% 0 150% 0;
             pointer-events: none;
-            filter: blur(1px);
+            filter: blur(0.5px);
             animation: fall linear infinite;
         }
 
@@ -87,9 +93,10 @@
             position: relative;
             width: 320px;
             height: 220px;
-            background-color: #2b1016;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.2);
+            background-color: #F8E8DA;
+            border: 2px solid #C08038;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(61, 23, 32, 0.12), 0 0 20px rgba(192, 128, 56, 0.15);
             cursor: pointer;
             transition: transform 0.6s ease;
         }
@@ -110,13 +117,13 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 50%;
-            background-color: #3a151e;
+            height: 62%;
+            background-color: #F1DEC9;
             clip-path: polygon(0 0, 50% 100%, 100% 0);
             transform-origin: top;
             transition: transform 0.8s ease 0.2s, z-index 0.2s ease 0.4s;
             z-index: 4;
-            border-top: 2px solid #d4af37;
+            border-top: 2px solid #C08038;
         }
 
         .envelope.open .flap {
@@ -130,11 +137,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #220b10 0%, #3a141d 100%);
-            clip-path: polygon(0 100%, 0 35%, 50% 70%, 100% 35%, 100% 100%);
+            background: linear-gradient(135deg, #F5E6D8 0%, #EAD5C3 100%);
+            clip-path: polygon(0 100%, 0 35%, 50% 65%, 100% 35%, 100% 100%);
             z-index: 3;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
 
         .envelope .letter-preview {
@@ -142,40 +149,44 @@
             bottom: 10px;
             left: 5%;
             width: 90%;
-            height: 85%;
-            background: #fffdfa;
-            border-radius: 6px;
+            height: 75%;
+            background: #FFFDF9;
+            border: 1px solid rgba(192, 128, 56, 0.3);
+            border-radius: 8px;
             z-index: 2;
-            transition: transform 0.8s ease 0.6s, opacity 0.5s ease 0.6s;
+            transition: transform 0.8s ease 0.6s, opacity 0.5s ease 0.4s;
             padding: 20px;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
-            color: #2b1016;
+            box-shadow: 0 -5px 15px rgba(61, 23, 32, 0.08);
+            color: #2A0E14;
             font-family: 'Cormorant Garamond', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
         .envelope.open .letter-preview {
-            transform: translateY(-120px) scale(1.05);
+            opacity: 1;
+            transform: translateY(-60px) scale(1.02);
         }
 
         .wax-seal {
             position: absolute;
-            top: 50%;
+            top: 52%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
-            background: radial-gradient(circle, #b71c1c 0%, #7f0000 100%);
+            background: linear-gradient(135deg, #C08038 0%, #E8A598 100%);
             border-radius: 50%;
             z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.3);
-            border: 2px solid #d4af37;
+            box-shadow: 0 4px 12px rgba(61, 23, 32, 0.2);
+            border: 2px solid #FFF;
             transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
         }
 
@@ -185,19 +196,19 @@
             pointer-events: none;
         }
 
-        /* Glassmorphism containers */
+        /* Glassmorphism light cards */
         .glass-card {
-            background: rgba(26, 12, 18, 0.75);
+            background: rgba(255, 253, 249, 0.88);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(192, 128, 56, 0.25);
+            box-shadow: 0 15px 35px rgba(61, 23, 32, 0.06);
         }
 
-        /* Animated plane flight path */
+        /* Flight path & moving plane */
         .flight-path {
             position: relative;
             width: 100%;
-            max-width: 320px;
+            max-width: 300px;
             height: 24px;
             margin: 0 auto;
             display: flex;
@@ -207,7 +218,7 @@
         .flight-line {
             width: 100%;
             height: 1px;
-            background: repeating-linear-gradient(90deg, rgba(212, 175, 55, 0.5) 0, rgba(212, 175, 55, 0.5) 6px, transparent 6px, transparent 12px);
+            background: repeating-linear-gradient(90deg, rgba(192, 128, 56, 0.6) 0, rgba(192, 128, 56, 0.6) 6px, transparent 6px, transparent 12px);
         }
 
         .flying-plane {
@@ -215,9 +226,9 @@
             top: 50%;
             left: 0%;
             transform: translateY(-50%) rotate(90deg);
-            color: #d4af37;
+            color: #C08038;
             animation: flyAcross 12s linear infinite;
-            filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
+            filter: drop-shadow(0 1px 3px rgba(192, 128, 56, 0.4));
         }
 
         @keyframes flyAcross {
@@ -225,110 +236,84 @@
                 left: 0%;
                 opacity: 0;
             }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
             100% {
                 left: 92%;
                 opacity: 0;
             }
         }
-
-        /* Print styles */
-        @media print {
-            body {
-                background: white !important;
-                color: black !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .glass-card {
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                color: black !important;
-            }
-        }
     </style>
 </head>
-<body class="min-h-screen text-stone-200 antialiased selection:bg-rose-900 selection:text-rose-100 relative">
+<body class="min-h-screen text-burgundy antialiased relative">
 
     <!-- Floating Petals Container -->
     <div id="petal-container"></div>
 
-    <!-- Top Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-40 bg-opacity-80 backdrop-blur-md bg-stone-950/80 border-b border-amber-900/20 px-4 py-3 no-print">
+    <!-- Header Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/70 backdrop-blur-md border-b border-amber-900/10 px-4 py-3">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <i data-lucide="heart" class="w-5 h-5 text-rose-500 fill-rose-500 animate-pulse"></i>
-                <span class="font-heading text-xs sm:text-sm tracking-widest text-amber-200 uppercase">Josh & Angelle</span>
+                <i data-lucide="heart" class="w-5 h-5 text-rose-600 fill-rose-500 animate-pulse"></i>
+                <span class="font-heading text-xs sm:text-sm tracking-widest text-burgundy font-semibold uppercase">Josh & Angelle</span>
             </div>
-
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                <button id="theme-toggle" class="p-1.5 rounded-full bg-stone-900 border border-amber-900/30 text-amber-300 hover:bg-stone-800 transition" title="Toggle Soft Glow Mode">
-                    <i data-lucide="sparkles" class="w-4 h-4"></i>
-                </button>
-            </div>
+            <div class="text-xs font-serif italic text-warmGold">2 Years & Counting</div>
         </div>
     </header>
 
     <main class="pt-20 pb-24 px-4 sm:px-6 max-w-4xl mx-auto relative z-10">
 
         <!-- SECTION 1: ENVELOPE OPENING EXPERIENCE -->
-        <section id="envelope-section" class="min-h-[75vh] flex flex-col items-center justify-center text-center transition-all duration-700">
-            <div class="mb-8 space-y-2">
-                <span class="text-rose-400 font-cursive text-3xl sm:text-4xl block">Happy 2nd Anniversary</span>
-                <h1 class="font-heading text-2xl sm:text-4xl text-amber-100 tracking-wider">A Special Letter For You</h1>
-                <p class="text-stone-400 text-xs sm:text-sm max-w-xs mx-auto">Tap the wax seal to open your letter, my love</p>
+        <section id="envelope-section" class="min-h-[75vh] flex flex-col items-center justify-center text-center transition-all duration-700 pt-6">
+            <div class="mb-12 space-y-2">
+                <span class="text-rose-600 font-cursive text-3xl sm:text-4xl block">Happy 2nd Anniversary</span>
+                <h1 class="font-heading text-2xl sm:text-4xl text-deepBurgundy tracking-wider font-bold">A Special Letter For You</h1>
+                <p class="text-stone-600 text-xs sm:text-sm max-w-xs mx-auto font-sans">Tap the seal to unseal your anniversary letter, my love</p>
             </div>
 
-            <!-- Envelope Container -->
-            <div class="envelope-wrapper my-6">
+            <!-- Envelope Component -->
+            <div class="envelope-wrapper my-6 mt-10 sm:mt-14">
                 <div id="envelope" class="envelope" onclick="openEnvelope()">
                     <div class="flap"></div>
                     <div class="pocket"></div>
                     <div class="letter-preview">
-                        <i data-lucide="heart" class="w-8 h-8 text-rose-700 fill-rose-700 mb-2"></i>
-                        <p class="font-cursive text-2xl text-rose-950">My Dearest Angelle,</p>
-                        <p class="text-xs text-stone-600 font-sans mt-1">2 Years of Us & Forever To Go</p>
+                        <i data-lucide="heart" class="w-8 h-8 text-rose-600 fill-rose-500 mb-2"></i>
+                        <p class="font-cursive text-2xl text-deepBurgundy">My Dearest Angelle,</p>
+                        <p class="text-xs text-stone-500 font-sans mt-1">2 Years of Us & Forever To Go</p>
                     </div>
                     <div class="wax-seal">
-                        <span class="font-heading text-amber-200 text-lg font-bold">J&A</span>
+                        <span class="font-heading text-white text-lg font-bold">J&A</span>
                     </div>
                 </div>
             </div>
 
-            <button onclick="openEnvelope()" class="mt-8 px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-700/80 to-rose-900/80 hover:from-amber-600 hover:to-rose-800 border border-amber-400/30 text-amber-100 text-sm font-medium tracking-wide shadow-lg transition duration-300 flex items-center space-x-2">
+            <button onclick="openEnvelope()" class="mt-8 px-6 py-2.5 rounded-full bg-gradient-to-r from-warmGold to-rose-400 hover:from-amber-600 hover:to-rose-500 text-white text-sm font-medium tracking-wide shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2">
                 <i data-lucide="mail-open" class="w-4 h-4"></i>
                 <span>Open Letter</span>
             </button>
         </section>
 
         <!-- SECTION 2: THE MAIN LETTER -->
-        <section id="letter-content" class="hidden opacity-0 transition-opacity duration-1000 space-y-12">
+        <section id="letter-content" class="hidden opacity-0 transition-opacity duration-1000 space-y-12 scroll-mt-28 pt-10">
             
             <!-- Header Banner -->
-            <div class="text-center space-y-3 pt-6 border-b border-amber-900/30 pb-8">
-                <!-- Subtle Animated Flight Path -->
+            <div class="text-center space-y-3 pt-6 border-b border-amber-900/10 pb-8">
+                <!-- Flight Path Graphic -->
                 <div class="flight-path my-2" title="Flying across the miles to you">
                     <div class="flight-line"></div>
                     <div class="flying-plane">
                         <i data-lucide="plane" class="w-4 h-4"></i>
                     </div>
                 </div>
-                <h1 class="font-heading text-3xl sm:text-5xl text-amber-100 tracking-wider">My Dearest Angelle,</h1>
-                <p class="font-cursive text-2xl sm:text-3xl text-rose-300">Happy Two Year Anniversary, My Love</p>
+                <h1 class="font-heading text-3xl sm:text-5xl text-deepBurgundy tracking-wider font-bold">My Dearest Angelle,</h1>
+                <p class="font-cursive text-2xl sm:text-3xl text-rose-700">Happy Two Year Anniversary, My Love</p>
             </div>
 
-            <!-- Letter Body -->
-            <div class="glass-card rounded-2xl p-6 sm:p-10 text-stone-200 font-serif text-lg sm:text-xl leading-relaxed space-y-6 shadow-2xl relative">
-                <div class="absolute top-4 right-6 text-amber-500/10 font-serif text-8xl pointer-events-none select-none">“</div>
+            <!-- Letter Body Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-10 text-burgundy font-serif text-lg sm:text-xl leading-relaxed space-y-6 shadow-xl relative">
+                <div class="absolute top-4 right-6 text-amber-900/10 font-serif text-8xl pointer-events-none select-none">“</div>
                 
-                <p class="first-letter:text-5xl first-letter:font-heading first-letter:text-amber-300 first-letter:mr-2 first-letter:float-left text-stone-200">
+                <p class="first-letter:text-5xl first-letter:font-heading first-letter:text-warmGold first-letter:mr-2 first-letter:float-left text-burgundy">
                     Happy two-year anniversary, my love.
                 </p>
 
@@ -360,64 +345,62 @@
                     Thank you for experiencing this life with me, for fighting for us, and for being my person. I love you more than words can say, Angelle, and I can’t wait to see what this third year holds for us.
                 </p>
 
-                <div class="pt-6 border-t border-amber-900/30 text-right space-y-1">
-                    <p class="font-cursive text-3xl text-amber-200">Forever yours, my love,</p>
-                    <p class="font-heading text-xl text-rose-300">Josh</p>
+                <div class="pt-6 border-t border-amber-900/10 text-right space-y-1">
+                    <p class="font-cursive text-3xl text-warmGold">Forever yours, my love,</p>
+                    <p class="font-heading text-xl text-burgundy font-bold">Josh</p>
                 </div>
             </div>
 
             <!-- SECTION 3: REUNION COUNTDOWN -->
-            <div class="glass-card rounded-2xl p-6 sm:p-8 text-center space-y-6 relative overflow-hidden border border-rose-500/20">
-                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-rose-600/10 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-950/60 text-rose-300 text-xs tracking-wide border border-rose-800/40">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 text-center space-y-6 relative overflow-hidden border border-amber-900/15 shadow-md">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-rose-100/80 text-rose-800 text-xs tracking-wide border border-rose-300/50">
                     <i data-lucide="plane-landing" class="w-3.5 h-3.5"></i>
                     <span>The December Reunion</span>
                 </div>
 
-                <h2 class="font-heading text-2xl sm:text-3xl text-amber-100">Counting Down Until I Hold You Again</h2>
-                <p class="text-stone-300 text-sm max-w-md mx-auto">From Germany back into your arms in Malaysia. Every second brings us closer.</p>
+                <h2 class="font-heading text-2xl sm:text-3xl text-deepBurgundy font-bold">Counting Down Until I Hold You Again</h2>
+                <p class="text-stone-600 text-sm max-w-md mx-auto">From Germany back into your arms in Malaysia. Every second brings us closer.</p>
 
                 <!-- Timer Grid -->
                 <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto py-2">
-                    <div class="bg-stone-950/60 p-3 sm:p-4 rounded-xl border border-amber-900/30">
-                        <span id="countdown-days" class="block font-heading text-2xl sm:text-4xl text-amber-300 font-bold">--</span>
-                        <span class="text-[10px] sm:text-xs text-stone-400 uppercase tracking-wider">Days</span>
+                    <div class="bg-cardBg p-3 sm:p-4 rounded-xl border border-amber-900/15 shadow-sm">
+                        <span id="countdown-days" class="block font-heading text-2xl sm:text-4xl text-warmGold font-bold">--</span>
+                        <span class="text-[10px] sm:text-xs text-stone-500 uppercase tracking-wider font-semibold">Days</span>
                     </div>
-                    <div class="bg-stone-950/60 p-3 sm:p-4 rounded-xl border border-amber-900/30">
-                        <span id="countdown-hours" class="block font-heading text-2xl sm:text-4xl text-amber-300 font-bold">--</span>
-                        <span class="text-[10px] sm:text-xs text-stone-400 uppercase tracking-wider">Hours</span>
+                    <div class="bg-cardBg p-3 sm:p-4 rounded-xl border border-amber-900/15 shadow-sm">
+                        <span id="countdown-hours" class="block font-heading text-2xl sm:text-4xl text-warmGold font-bold">--</span>
+                        <span class="text-[10px] sm:text-xs text-stone-500 uppercase tracking-wider font-semibold">Hours</span>
                     </div>
-                    <div class="bg-stone-950/60 p-3 sm:p-4 rounded-xl border border-amber-900/30">
-                        <span id="countdown-mins" class="block font-heading text-2xl sm:text-4xl text-amber-300 font-bold">--</span>
-                        <span class="text-[10px] sm:text-xs text-stone-400 uppercase tracking-wider">Mins</span>
+                    <div class="bg-cardBg p-3 sm:p-4 rounded-xl border border-amber-900/15 shadow-sm">
+                        <span id="countdown-mins" class="block font-heading text-2xl sm:text-4xl text-warmGold font-bold">--</span>
+                        <span class="text-[10px] sm:text-xs text-stone-500 uppercase tracking-wider font-semibold">Mins</span>
                     </div>
-                    <div class="bg-stone-950/60 p-3 sm:p-4 rounded-xl border border-amber-900/30">
-                        <span id="countdown-secs" class="block font-heading text-2xl sm:text-4xl text-amber-300 font-bold">--</span>
-                        <span class="text-[10px] sm:text-xs text-stone-400 uppercase tracking-wider">Secs</span>
+                    <div class="bg-cardBg p-3 sm:p-4 rounded-xl border border-amber-900/15 shadow-sm">
+                        <span id="countdown-secs" class="block font-heading text-2xl sm:text-4xl text-warmGold font-bold">--</span>
+                        <span class="text-[10px] sm:text-xs text-stone-500 uppercase tracking-wider font-semibold">Secs</span>
                     </div>
                 </div>
 
-                <p class="text-xs text-amber-200/70 italic font-serif">"No distance in miles can diminish what we have built in our hearts."</p>
+                <p class="text-xs text-amber-900/70 italic font-serif">"No distance in miles can diminish what we have built in our hearts."</p>
             </div>
 
             <!-- SECTION 4: INTERACTIVE LOVE NOTES GENERATOR -->
             <div class="glass-card rounded-2xl p-6 sm:p-8 text-center space-y-6">
                 <div class="space-y-2">
-                    <i data-lucide="sparkle" class="w-6 h-6 text-amber-400 mx-auto"></i>
-                    <h2 class="font-heading text-2xl text-amber-100">Press for a Reason I Love You</h2>
-                    <p class="text-xs sm:text-sm text-stone-400">Little moments, tiny habits, and memories that make my heart melt</p>
+                    <i data-lucide="sparkle" class="w-6 h-6 text-warmGold mx-auto"></i>
+                    <h2 class="font-heading text-2xl text-deepBurgundy font-bold">Press for a Reason I Love You</h2>
+                    <p class="text-xs sm:text-sm text-stone-600">Little moments, tiny habits, and memories that make my heart melt</p>
                 </div>
 
                 <!-- Note Display Box -->
-                <div class="min-h-[120px] flex items-center justify-center p-6 bg-stone-950/50 rounded-xl border border-amber-500/20 relative">
-                    <p id="love-note-text" class="font-serif text-lg sm:text-xl text-rose-200 italic transition-all duration-300">
+                <div class="min-h-[110px] flex items-center justify-center p-6 bg-cardBg rounded-xl border border-amber-900/15 relative shadow-inner">
+                    <p id="love-note-text" class="font-serif text-lg sm:text-xl text-burgundy italic transition-all duration-300">
                         "Click the button below to reveal a love note, my Angelle..."
                     </p>
                 </div>
 
-                <button onclick="generateLoveNote()" class="px-6 py-3 rounded-full bg-gradient-to-r from-rose-900 to-amber-800 hover:from-rose-800 hover:to-amber-700 text-amber-100 text-sm font-medium tracking-wide shadow-lg hover:shadow-rose-900/50 transition duration-300 flex items-center space-x-2 mx-auto">
-                    <i data-lucide="heart-handshake" class="w-4 h-4 text-amber-300"></i>
+                <button onclick="generateLoveNote()" class="px-6 py-3 rounded-full bg-gradient-to-r from-warmGold to-rose-400 hover:from-amber-600 hover:to-rose-500 text-white text-sm font-medium tracking-wide shadow-md hover:shadow-lg transition duration-300 flex items-center space-x-2 mx-auto">
+                    <i data-lucide="heart-handshake" class="w-4 h-4 text-white"></i>
                     <span>Show Me Another Reason</span>
                 </button>
             </div>
@@ -425,19 +408,19 @@
             <!-- SECTION 5: OUR TIMELINE & MILESTONES -->
             <div class="space-y-6">
                 <div class="text-center space-y-1">
-                    <h2 class="font-heading text-2xl sm:text-3xl text-amber-100">Our Story So Far</h2>
-                    <p class="text-xs sm:text-sm text-stone-400">Two years of growth, distance, and boundless love</p>
+                    <h2 class="font-heading text-2xl sm:text-3xl text-deepBurgundy font-bold">Our Story So Far</h2>
+                    <p class="text-xs sm:text-sm text-stone-600">Two years of growth, distance, and boundless love</p>
                 </div>
 
-                <div class="relative border-l-2 border-amber-900/40 ml-4 sm:ml-32 space-y-8 pl-6 sm:pl-8 py-2">
+                <div class="relative border-l-2 border-amber-900/20 ml-4 sm:ml-32 space-y-8 pl-6 sm:pl-8 py-2">
                     
                     <!-- Timeline Item 1 -->
                     <div class="relative group">
-                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-stone-950 shadow"></div>
-                        <span class="sm:absolute sm:-left-36 sm:top-0 text-xs font-mono text-amber-400/80 mb-1 block">YEAR 1</span>
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-warmGold border-4 border-creamBg shadow"></div>
+                        <span class="sm:absolute sm:-left-36 sm:top-0 text-xs font-mono text-warmGold font-bold mb-1 block">YEAR 1</span>
                         <div class="glass-card p-5 rounded-xl space-y-2">
-                            <h3 class="font-heading text-lg text-amber-200">Figuring Things Out & Learning to Love Well</h3>
-                            <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                            <h3 class="font-heading text-lg text-deepBurgundy font-bold">Figuring Things Out & Learning to Love Well</h3>
+                            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans">
                                 Navigating the beginning, learning each other's boundaries, making silly mistakes, and slowly building the foundation of who we are today.
                             </p>
                         </div>
@@ -445,11 +428,11 @@
 
                     <!-- Timeline Item 2 -->
                     <div class="relative group">
-                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-rose-500 border-4 border-stone-950 shadow"></div>
-                        <span class="sm:absolute sm:-left-36 sm:top-0 text-xs font-mono text-rose-400/80 mb-1 block">YEAR 2</span>
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-rose-500 border-4 border-creamBg shadow"></div>
+                        <span class="sm:absolute sm:-left-36 sm:top-0 text-xs font-mono text-rose-600 font-bold mb-1 block">YEAR 2</span>
                         <div class="glass-card p-5 rounded-xl space-y-2">
-                            <h3 class="font-heading text-lg text-rose-200">The Long-Distance Chapter</h3>
-                            <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                            <h3 class="font-heading text-lg text-deepBurgundy font-bold">The Long-Distance Chapter</h3>
+                            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans">
                                 Moving to Germany, late-night sleep calls across time zones, watching you get lost in your books, and learning that our connection transcends distance.
                             </p>
                         </div>
@@ -457,12 +440,12 @@
 
                     <!-- Timeline Item 3 -->
                     <div class="relative group">
-                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-amber-300 border-4 border-stone-950 shadow animate-ping"></div>
-                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-amber-300 border-4 border-stone-950 shadow"></div>
-                        <span class="sm:absolute sm:-left-36 sm:top-0 text-xs font-mono text-amber-300 mb-1 block">DECEMBER 18</span>
-                        <div class="glass-card p-5 rounded-xl space-y-2 border border-amber-500/40">
-                            <h3 class="font-heading text-lg text-amber-100">The Reunion in Malaysia</h3>
-                            <p class="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-creamBg shadow animate-ping"></div>
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-4 h-4 rounded-full bg-warmGold border-4 border-creamBg shadow"></div>
+                        <span class="sm:absolute sm:-left-36 sm:top-0 text-xs font-mono text-warmGold font-bold mb-1 block">DECEMBER 18</span>
+                        <div class="glass-card p-5 rounded-xl space-y-2 border border-warmGold/40">
+                            <h3 class="font-heading text-lg text-deepBurgundy font-bold">The Reunion in Malaysia</h3>
+                            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed font-sans">
                                 Holding hands in person again. No screens, no time differences, just us in the same room making memories together.
                             </p>
                         </div>
@@ -472,9 +455,9 @@
             </div>
 
             <!-- Footer Message -->
-            <div class="text-center pt-8 border-t border-amber-900/30 text-xs text-stone-500 space-y-2 no-print">
+            <div class="text-center pt-8 border-t border-amber-900/10 text-xs text-stone-500 space-y-2">
                 <p>Designed with all my love for Angelle • Happy 2nd Anniversary</p>
-                <p class="text-amber-400/60 font-serif">"Every day is the best day with you in it."</p>
+                <p class="text-warmGold font-serif text-sm italic">"Every day is the best day with you in it."</p>
             </div>
 
         </section>
@@ -496,7 +479,7 @@
                     letterContent.classList.remove('hidden');
                     setTimeout(() => {
                         letterContent.classList.remove('opacity-0');
-                        envelopeSection.scrollIntoView({ behavior: 'smooth' });
+                        letterContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }, 100);
                 }, 1000);
             }
@@ -587,8 +570,7 @@
             }, 200);
         }
 
-        // --- 5. UTILITY FUNCTIONS ---
-        // Initialize icons, countdown, and floating effects
+        // --- 5. INITIALIZATION ---
         window.onload = function() {
             lucide.createIcons();
             createPetals();
